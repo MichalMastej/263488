@@ -7,13 +7,23 @@
 
 class Macierz {
 
-    Wektor size[ROZMIAR];
+    Wektor wiersz[ROZMIAR];
 
     public:
 
-    Macierz(Wektor [ROZMIAR]);
+    Macierz();
+    Macierz(double tab[ROZMIAR][ROZMIAR]);
+
+    const Wektor &operator [] (int wie) const;
+    Wektor &operator [] (int wie);
+
+    const double operator() (int wie, int kol) const;
+    double& operator() (int wie, int kol);
+
     Macierz operator + (Macierz mac);
-    Wektor operator * (Wektor wek);
+    //Wektor operator * (Wektor wek);
+
+    void zamien(int ktory, int z_ktorym);
 };
 
 std::istream &operator >> (std::istream &input, Macierz &mac);

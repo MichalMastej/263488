@@ -6,20 +6,24 @@
 
 class Wektor
 {
-    double rozmiar[ROZMIAR];
+    double wyraz[ROZMIAR];
 
     public:
 
-    Wektor(double [ROZMIAR]);
+    Wektor();
+    Wektor(double tab[ROZMIAR]);
 
-    Wektor operator + (Wektor &wek);
-    Wektor operator - (Wektor &wek);
-    Wektor operator * (double &tmp);
-    Wektor operator / (double &tmp);
+    double operator[] (int index) const;
+    double &operator[] (int inedx);
+
+    Wektor operator+ (Wektor &wek);
+    Wektor operator- (Wektor &wek);
+    Wektor operator* (double &tmp);
+    Wektor operator/ (double &tmp);
 
 };
 
-std::ostream& operator << (std::ostream &output, const Wektor &wek);
-std::istream& operator >> (std::istream &input, Wektor &wek);
+std::ostream& operator<< (std::ostream &output, const Wektor &wek);
+std::istream& operator>> (std::istream &input, Wektor &wek);
 
 #endif
