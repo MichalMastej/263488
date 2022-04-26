@@ -13,7 +13,7 @@ Wektor::Wektor(double tab[ROZMIAR]){
         wyraz[i] = tab[i];}
 }
 
-double Wektor::operator [] (int index) const {
+double Wektor::operator[] (int index) const {
 
     if(index < 0 || index > ROZMIAR){
         std::cerr << std::endl << "Brak takiego indexu" << std::endl; 
@@ -22,7 +22,7 @@ double Wektor::operator [] (int index) const {
     return wyraz[index];
 }
 
-double &Wektor::operator [] (int index) {
+double &Wektor::operator[] (int index) {
 
     if(index < 0 || index > ROZMIAR){
         std::cerr << std::endl << "Brak takiego indexu" << std::endl; 
@@ -72,6 +72,17 @@ Wektor Wektor::operator / (double &tmp){
     }
 
     return wynik;
+}
+
+double Wektor::iloczyn_skalarny(Wektor wek_2){
+
+    double wynik;
+
+    for (int i = 0; i < ROZMIAR; ++i){
+        wynik += wyraz[i] * wek_2[i];
+    }
+
+    return wynik;   
 }
 
 std::istream &operator>> (std::istream &input, Wektor &wek){

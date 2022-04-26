@@ -2,6 +2,26 @@
 #include <string>
 #include "LZespolona.hh"
 
+void LZespolona::set_value_rl(double &arl){
+
+    rl = arl;
+}
+
+void LZespolona::set_value_im(double &irl){
+
+    im = irl;
+}
+
+double LZespolona::get_value_rl(){
+
+    return rl;
+}
+
+double LZespolona::get_value_im(){
+
+    return im;
+}
+
 /*!                                                                             
  * Realizuje dodanie dwoch liczb zespolonych.                                   
  * Argumenty:                                                                   
@@ -129,17 +149,17 @@ bool LZespolona::operator == (LZespolona obj_2){
  *    Adress standardowego wyjscia, na ktore ma zostac wypisana liczba.                       
  */
 
-std::ostream& operator << (std::ostream &input, const LZespolona &obj_2){
+std::ostream &operator<< (std::ostream &output, LZespolona const &obj_2){
 
-    input << "(" << obj_2.rl;
+    output << "(" << obj_2.rl;
     if (obj_2.im < 0){
-        input << obj_2.im << "i)";
+        output << obj_2.im << "i)";
     }
     else {
-        input << "+" << obj_2.im << "i)";
+        output << "+" << obj_2.im << "i)";
     }
 
-    return input;
+    return output;
 }
 
 /*!                                                                             
@@ -151,45 +171,45 @@ std::ostream& operator << (std::ostream &input, const LZespolona &obj_2){
  *    Adress standardowego wejscia, dzieki ktoremu liczba zostaje wpisana do zmiennej                       
  */
 
-std::istream& operator >> (std::istream &output, LZespolona &obj_2){
+std::istream& operator >> (std::istream &input, LZespolona &obj_2){
 
     std::string temp;
-    char a, b;
+    char a;
 
-    output >> a;
+    input >> a;
     if (a != '('){
-        output.setstate(std::ios::failbit);
-        return output;
+        input.setstate(std::ios::failbit);
+        return input;
     }
 
-    if ((output >> obj_2.rl).fail()){
-        output.setstate(std::ios::failbit);
-        return output;
+    if ((input >> obj_2.rl).fail()){
+        input.setstate(std::ios::failbit);
+        return input;
     }
 
-    output >> b;
-    if (b != '+' && b != '-'){
-        output.setstate(std::ios::failbit);
-        return output;
+    input >> a;
+    if (a != '+' && a != '-'){
+        input.setstate(std::ios::failbit);
+        return input;
     }
-    output.putback(b);
+    input.putback(a);
 
-    if ((output >> obj_2.im).fail()){
-        output.setstate(std::ios::failbit);
-        return output;
+    if ((input >> obj_2.im).fail()){
+        input.setstate(std::ios::failbit);
+        return input;
     }
 
-    output >> a;
+    input >> a;
     if (a != 'i'){
-        output.setstate(std::ios::failbit);
-        return output;
+        input.setstate(std::ios::failbit);
+        return input;
     }
 
-    output >> a;
+    input >> a;
     if (a != ')'){
-        output.setstate(std::ios::failbit);
-        return output;
+        input.setstate(std::ios::failbit);
+        return input;
     }
 
-    return output;
+    return input;
 }

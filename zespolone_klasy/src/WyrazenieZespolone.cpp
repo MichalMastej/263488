@@ -3,6 +3,26 @@
 
 using namespace std;
 
+void WyrazenieZespolone::set_value_arg1(LZespolona &zesp_tmp){
+
+    arg1 = zesp_tmp;
+}
+
+void WyrazenieZespolone::set_value_arg2(LZespolona &zesp_tmp){
+
+    arg2 = zesp_tmp;
+}
+
+LZespolona WyrazenieZespolone::get_value_arg(int number){
+
+    if (number == 1){
+        return arg1;
+    }
+    else {
+        return arg2;
+    }
+}
+
 void WyrazenieZespolone::zadaj_pytanie()
 {
   cout << endl << "Podaj wynik operacji: ";

@@ -4,8 +4,8 @@
 #include <iostream>
 #include "rozmiar.h"
 
-class Wektor
-{
+class Wektor{
+    
     double wyraz[ROZMIAR];
 
     public:
@@ -21,6 +21,7 @@ class Wektor
     Wektor operator* (double &tmp);
     Wektor operator/ (double &tmp);
 
+    double iloczyn_skalarny(Wektor wek_2);
 };
 
 std::ostream& operator<< (std::ostream &output, const Wektor &wek);

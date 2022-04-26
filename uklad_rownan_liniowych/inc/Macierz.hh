@@ -21,9 +21,10 @@ class Macierz {
     double& operator() (int wie, int kol);
 
     Macierz operator + (Macierz mac);
-    //Wektor operator * (Wektor wek);
+    Wektor operator * (Wektor wek);
 
     void zamien(int ktory, int z_ktorym);
+    void transponuj();
 };
 
 std::istream &operator >> (std::istream &input, Macierz &mac);

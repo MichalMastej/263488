@@ -74,7 +74,17 @@ Macierz Macierz::operator+ (Macierz mac) {
     return wynik;
 }
 
-//Wektor Macierz::operator* (Wektor wek){}
+Wektor Macierz::operator* (Wektor wek){
+
+    Wektor wynik;
+
+    for (int i = 0; i < ROZMIAR; ++i){
+        for (int j = 0; j < ROZMIAR; ++j){
+            wynik[i] += wiersz[i][j] * wek[j];
+    }}
+
+    return wynik;
+}
 
 void Macierz::zamien(int ktory, int z_ktorym){
 
@@ -83,6 +93,25 @@ void Macierz::zamien(int ktory, int z_ktorym){
     tmp = wiersz[ktory];
     wiersz[ktory] = wiersz[z_ktorym];
     wiersz[z_ktorym] = tmp;
+}
+
+void Macierz::transponuj(){
+
+    Macierz tmp;
+
+    for (int i = 0; i < ROZMIAR; ++i){
+        for (int j = 0; j < ROZMIAR; j++)
+        {
+            tmp[i][j] = wiersz[i][j];
+        }
+    }
+
+    for (int i = 0; i < ROZMIAR; ++i){
+        for (int j = 0; j < ROZMIAR; j++)
+        {
+            wiersz[i][j] = tmp[j][i];
+        }
+    }
 }
 
 std::istream &operator>> (std::istream &input, Macierz &mac){

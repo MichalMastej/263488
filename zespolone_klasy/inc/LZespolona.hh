@@ -3,26 +3,32 @@
 
 #include <iostream>
 
-class LZespolona;
-
 class LZespolona
 {
-
-public:
   
   double rl;
   double im;
+
+  public:
+
+  void set_value_rl(double &arl);
+  void set_value_im(double &irl);
+  double get_value_rl();
+  double get_value_im();
   
-  LZespolona operator + (LZespolona obj_2);
-  LZespolona operator - (LZespolona obj_2);
-  LZespolona operator * (LZespolona obj_2);
-  LZespolona operator / (double obj_2);
-  LZespolona operator / (LZespolona obj_2);
-  bool operator == (LZespolona obj_2);
+  LZespolona operator+ (LZespolona obj_2);
+  LZespolona operator- (LZespolona obj_2);
+  LZespolona operator* (LZespolona obj_2);
+  LZespolona operator/ (double obj_2);
+  LZespolona operator/ (LZespolona obj_2);
+  bool operator== (LZespolona obj_2);
+
+  friend std::ostream &operator<< (std::ostream &output, const LZespolona &obj_2);
+  friend std::istream& operator>> (std::istream &input, LZespolona &obj_2);
 
 };
 
-std::ostream& operator << (std::ostream &stream, const LZespolona &obj_2); 
-std::istream& operator >> (std::istream &stream, LZespolona &obj_2);
+std::ostream& operator<< (std::ostream &output, const LZespolona &obj_2); 
+std::istream& operator>> (std::istream &input, LZespolona &obj_2);
 
 #endif

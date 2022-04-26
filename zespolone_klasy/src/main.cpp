@@ -9,13 +9,14 @@ void WykonajTest(istream &input)
 {
     LZespolona odpowiedz, wynik;
     WyrazenieZespolone wyr_pytanie_testowe;
-    StatystykaTestu stats_testu = {0, 0};
+    StatystykaTestu stats_testu;
 
     int szanse = 3;
 
     while (!input.eof()){
 
-        stats_testu.ilosc_pytan++;
+        stats_testu.increment_value(1);
+        //stats_testu.ilosc_pytan++;
         input.clear();
         input >> wyr_pytanie_testowe;
 
@@ -23,16 +24,18 @@ void WykonajTest(istream &input)
         cout << endl << "Napotkano blad skladni pytania. Zostalo ono pominiete" << endl;
         input.clear();
         input.ignore(200000000, '\n');
-        stats_testu.ilosc_pytan--;
+        stats_testu.decrement_value(1);
+        //stats_testu.ilosc_pytan--;
         }
 
         else if (!input.fail()){
 
         while (szanse >= 0){
 
-        if (wyr_pytanie_testowe.arg2.rl == 0 && wyr_pytanie_testowe.arg2.im == 0){
+        if (wyr_pytanie_testowe.get_value_arg(2).get_value_rl() == 0 && wyr_pytanie_testowe.get_value_arg(2).get_value_im() == 0){
         cerr << endl << "Dzielenie przez zero. Pytanie pomieniete." << endl;
-        stats_testu.ilosc_pytan--;
+        stats_testu.decrement_value(1);
+        //stats_testu.ilosc_pytan--;
         break;}
 
         else{
@@ -46,7 +49,8 @@ void WykonajTest(istream &input)
         if (wynik == odpowiedz){
 
             cout << "Odpowiedz poprawna" << endl;
-            stats_testu.odp_poprawne++;
+            stats_testu.increment_value(0);
+            //stats_testu.odp_poprawne++;
             break;
         }
 
@@ -73,7 +77,8 @@ void WykonajTest(istream &input)
             cout << "Bledna odpowiedz. Prawidlowa odpowiedz to: " << wynik << endl;
             break;
         }}}}}
-    stats_testu.ilosc_pytan--;
+    stats_testu.decrement_value(1);
+    //stats_testu.ilosc_pytan--;
     stats_testu.summary();
 }
 
